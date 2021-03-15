@@ -4,6 +4,7 @@ import Endereco from "../models/Endereco";
 import EnderecosRespository from "../repositories/EnderecosRespository";
 
 interface Request {
+  usuario_id: string,
   endereco: string;
   numero: number;
   complemento: string;
@@ -14,10 +15,10 @@ interface Request {
 
 class CreateEnderecoService {
 
-  public async execute({ endereco, numero, complemento, cep, cidade, estado }: Request): Promise<Endereco> {
+  public async execute({ usuario_id, endereco, numero, complemento, cep, cidade, estado }: Request): Promise<Endereco> {
     const enderecosRepository = getCustomRepository(EnderecosRespository)
 
-    const novoEndereco = enderecosRepository.create({ endereco, numero, complemento, cep, cidade, estado });
+    const novoEndereco = enderecosRepository.create({ usuario_id, endereco, numero, complemento, cep, cidade, estado });
 
     await enderecosRepository.save(novoEndereco);
 

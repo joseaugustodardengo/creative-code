@@ -19,11 +19,11 @@ enderecosRouter.get('/', async (request, response) => {
 
 enderecosRouter.post('/', async (request, response) => {
   try {
-    const { endereco, numero, complemento, cep, cidade, estado } = request.body;
+    const { usuario_id, endereco, numero, complemento, cep, cidade, estado } = request.body;
 
     const createEndereco = new CreateEnderecoService();
 
-    const novoEndereco = await createEndereco.execute({ endereco, numero, complemento, cep, cidade, estado })
+    const novoEndereco = await createEndereco.execute({ usuario_id, endereco, numero, complemento, cep, cidade, estado })
 
     return response.json(novoEndereco);
   } catch (error) {

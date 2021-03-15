@@ -1,26 +1,37 @@
 import { Router } from 'express';
-import { v4 as uuid } from 'uuid';
+import { getRepository } from 'typeorm';
+import Usuario from '../models/Usuario';
+import CreateUsuarioService from '../services/CreateUsuarioService';
 
 const usuariosRouter = Router();
 
-const usuarios = [];
-
-usuariosRouter.post('/', (request, response) => {
+usuariosRouter.get('/', async (request, response) => {
   try {
-    const { nome, telefone, email, idade, peso, etinia, role } = request.body;
+    const usuariosRepository = getRepository(Usuario);
+    const usuarios = await usuariosRepository.find();
 
-    const usuario = {
-      id: uuid(),
+    return response.json(usuarios);
+  } catch (error) {
+    return response.status(400).json({ error: error.message })
+  }
+})
+
+usuariosRouter.post('/', async (request, response) => {
+  try {
+    const { nome, telefone, email, senha, idade, peso, etnia, role } = request.body;
+
+    const createUsuario = new CreateUsuarioService();
+
+    const usuario = await createUsuario.execute({
       nome,
       telefone,
       email,
+      senha,
       idade,
       peso,
-      etinia,
+      etnia,
       role,
-    };
-
-    usuarios.push(usuario);
+    });
 
     return response.json(usuario);
 

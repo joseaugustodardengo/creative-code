@@ -1,9 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import Usuario from './Usuario';
 
 @Entity('enderecos')
 class Endereco {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column()
+  usuario_id: string;
+
+  @ManyToOne(() => Usuario)
+  @JoinColumn({ name: 'usuario_id' })
+  usuario: Usuario;
 
   @Column()
   endereco: string;
@@ -22,6 +30,12 @@ class Endereco {
 
   @Column()
   estado: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 
 }
 
