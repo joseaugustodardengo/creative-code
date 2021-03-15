@@ -1,3 +1,5 @@
+import { getCustomRepository } from 'typeorm';
+
 import Endereco from "../models/Endereco";
 import EnderecosRespository from "../repositories/EnderecosRespository";
 
@@ -11,14 +13,13 @@ interface Request {
 }
 
 class CreateEnderecoService {
-  private enderecosRepository: EnderecosRespository;
 
-  constructor(enderecosRepository: EnderecosRespository) {
-    this.enderecosRepository = enderecosRepository;
-  }
+  public async execute({ endereco, numero, complemento, cep, cidade, estado }: Request): Promise<Endereco> {
+    const enderecosRepository = getCustomRepository(EnderecosRespository)
 
-  public execute({ endereco, numero, complemento, cep, cidade, estado }: Request): Endereco {
-    const novoEndereco = this.enderecosRepository.create({ endereco, numero, complemento, cep, cidade, estado });
+    const novoEndereco = enderecosRepository.create({ endereco, numero, complemento, cep, cidade, estado });
+
+    await enderecosRepository.save(novoEndereco);
 
     return novoEndereco;
   }

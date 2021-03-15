@@ -1,29 +1,28 @@
-import { v4 as uuid } from 'uuid';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity('enderecos')
 class Endereco {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column()
   endereco: string;
 
+  @Column('int')
   numero: number;
 
+  @Column()
   complemento: string;
 
+  @Column()
   cep: string;
 
+  @Column()
   cidade: string;
 
+  @Column()
   estado: string;
 
-  constructor({ endereco, numero, complemento, cep, cidade, estado }: Omit<Endereco, 'id'>) {
-    this.id = uuid();
-    this.endereco = endereco;
-    this.numero = numero;
-    this.complemento = complemento;
-    this.cep = cep;
-    this.cidade = cidade;
-    this.estado = estado;
-  }
 }
 
 export default Endereco;
