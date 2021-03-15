@@ -1,9 +1,10 @@
 import { Router } from 'express';
+import enderecosRouter from './enderecos.routes';
+import usuariosRouter from './usuarios.routes';
 
 const routes = Router();
 
-routes.get('/', (request, response) => {
-  return response.json({ message: "Hello World" })
-})
+routes.use('/usuarios', usuariosRouter);
+routes.use('/enderecos', enderecosRouter);
 
 export default routes;
