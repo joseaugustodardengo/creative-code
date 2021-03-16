@@ -1,4 +1,5 @@
 import { getRepository } from 'typeorm';
+import { hash } from 'bcryptjs';
 
 import Usuario from "../models/Usuario";
 
@@ -38,15 +39,9 @@ class CreateUsuarioService {
       throw new Error('Endereço de email já está em uso.')
     }
 
-    if (etnia !== 'branco' || 'negro' || 'indigena' || 'pardo') {
-      throw new Error('Etnia está diferente das opções branco, negro, indigena, pardo')
-    }
+    const hashedSenha = await hash(senha, 8);
 
-    if (role !== 'admin' || 'basico') {
-      throw new Error('Role está diferente das opções admin ou usuario')
-    }
-
-    const novoUsuario = usuariosRepository.create({ nome, telefone, email, senha, idade, peso, etnia, role })
+    const novoUsuario = usuariosRepository.create({ nome, telefone, email, senha: hashedSenha, idade, peso, etnia, role })
 
     await usuariosRepository.save(novoUsuario);
 

@@ -33,7 +33,19 @@ usuariosRouter.post('/', async (request, response) => {
       role,
     });
 
-    return response.json(usuario);
+    const usuarioSemSenha = {
+      id: usuario.id,
+      nome: usuario.nome,
+      email: usuario.email,
+      idade: usuario.idade,
+      peso: usuario.peso,
+      etnia: usuario.etnia,
+      role: usuario.role,
+      created_at: usuario.created_at,
+      updated_at: usuario.updated_at,
+    };
+
+    return response.json(usuarioSemSenha);
 
   } catch (error) {
     return response.status(400).json({ error: error.message });
