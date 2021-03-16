@@ -9,7 +9,7 @@ sessaoRouter.post('/', async (request, response) => {
 
     const authenticateUsuario = new AuthenticateUsuarioService();
 
-    const { usuario } = await authenticateUsuario.execute({ email, senha });
+    const { usuario, token } = await authenticateUsuario.execute({ email, senha });
 
     const usuarioSemSenha = {
       id: usuario.id,
@@ -24,9 +24,9 @@ sessaoRouter.post('/', async (request, response) => {
       updated_at: usuario.updated_at,
     };
 
-    return response.json(usuarioSemSenha);
+    return response.json({ usuario: usuarioSemSenha, token });
   } catch (error) {
-    return response.status(400).json({ error: error.message });
+    return response.status(error.statusCode).json({ error: error.message });
   }
 })
 

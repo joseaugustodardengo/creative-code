@@ -1,6 +1,8 @@
 import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
-
+import { sign } from 'jsonwebtoken';
+import authConfig from '../config/auth';
+import AppError from '../errors/AppError';
 import Usuario from "../models/Usuario";
 
 interface Request {
@@ -10,6 +12,7 @@ interface Request {
 
 interface Response {
   usuario: Usuario;
+  token: string;
 }
 
 class AuthenticateUsuarioService {
@@ -22,16 +25,23 @@ class AuthenticateUsuarioService {
     });
 
     if (!usuario) {
-      throw new Error('Combinação de Email/senha incorreto.')
+      throw new AppError('Combinação de Email/senha incorreto.', 401)
     }
 
     const senhaCorrespondida = await compare(senha, usuario.senha);
 
     if (!senhaCorrespondida) {
-      throw new Error('Combinação de Email/senha incorreto.')
+      throw new AppError('Combinação de Email/senha incorreto.', 401)
     }
 
-    return { usuario }
+    const { secret, expiresIn } = authConfig.jwt;
+
+    const token = sign({}, secret, {
+      subject: usuario.id,
+      expiresIn
+    });
+
+    return { usuario, token }
 
   }
 }

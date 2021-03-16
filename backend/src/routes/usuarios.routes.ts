@@ -13,7 +13,7 @@ usuariosRouter.get('/', async (request, response) => {
 
     return response.json(usuarios);
   } catch (error) {
-    return response.status(400).json({ error: error.message })
+    return response.status(error.statusCode).json({ error: error.message })
   }
 })
 
@@ -24,7 +24,7 @@ usuariosRouter.get('/:id', async (request, response) => {
 
     return response.send(usuario);
   } catch (error) {
-    return response.status(400).json({ error: error.message })
+    return response.status(error.statusCode).json({ error: error.message })
   }
 })
 
@@ -61,7 +61,7 @@ usuariosRouter.post('/', async (request, response) => {
     return response.json(usuarioSemSenha);
 
   } catch (error) {
-    return response.status(400).json({ error: error.message });
+    return response.status(error.statusCode).json({ error: error.message });
   }
 })
 
@@ -87,7 +87,7 @@ usuariosRouter.put('/:id', async (request, response) => {
     return response.json(usuario);
 
   } catch (error) {
-    return response.status(400).json({ error: error.message })
+    return response.status(error.statusCode).json({ error: error.message })
   }
 
 })
@@ -99,7 +99,7 @@ usuariosRouter.delete('/:id', async (request, response) => {
 
     return response.send(usuario);
   } catch (error) {
-    return response.status(400).json({ error: error.message })
+    return response.status(error.statusCode).json({ error: error.message })
   }
 })
 

@@ -1,10 +1,13 @@
 import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
+import garantirAutenticado from '../middlewares/garantirAutenticacao';
 
 import EnderecosRespository from '../repositories/EnderecosRespository';
 import CreateEnderecoService from '../services/CreateEnderecoService';
 
 const enderecosRouter = Router();
+
+enderecosRouter.use(garantirAutenticado);
 
 enderecosRouter.get('/', async (request, response) => {
   try {
@@ -13,7 +16,7 @@ enderecosRouter.get('/', async (request, response) => {
 
     return response.json(enderecos);
   } catch (error) {
-    return response.status(400).json({ error: error.message })
+    return response.status(error.statusCode).json({ error: error.message })
   }
 })
 
@@ -24,7 +27,7 @@ enderecosRouter.get('/:id', async (request, response) => {
 
     return response.send(endereco);
   } catch (error) {
-    return response.status(400).json({ error: error.message })
+    return response.status(error.statusCode).json({ error: error.message })
   }
 })
 
@@ -38,7 +41,7 @@ enderecosRouter.post('/', async (request, response) => {
 
     return response.json(novoEndereco);
   } catch (error) {
-    return response.status(400).json({ error: error.message })
+    return response.status(error.statusCode).json({ error: error.message })
   }
 
 })
@@ -62,7 +65,7 @@ enderecosRouter.put('/:id', async (request, response) => {
     return response.json(enderecoNovo);
 
   } catch (error) {
-    return response.status(400).json({ error: error.message })
+    return response.status(error.statusCode).json({ error: error.message })
   }
 
 })
@@ -74,7 +77,7 @@ enderecosRouter.delete('/:id', async (request, response) => {
 
     return response.send(endereco);
   } catch (error) {
-    return response.status(400).json({ error: error.message })
+    return response.status(error.statusCode).json({ error: error.message })
   }
 })
 

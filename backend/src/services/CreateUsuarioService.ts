@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
-
+import AppError from '../errors/AppError';
 import Usuario from "../models/Usuario";
 
 export enum UsuarioRole {
@@ -36,7 +36,7 @@ class CreateUsuarioService {
     });
 
     if (verificaSeUsuarioExiste) {
-      throw new Error('Endereço de email já está em uso.')
+      throw new AppError('Endereço de email já está em uso.')
     }
 
     const hashedSenha = await hash(senha, 8);
