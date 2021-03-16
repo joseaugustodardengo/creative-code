@@ -1,17 +1,20 @@
-import { FiLogIn } from 'react-icons/fi';
+import React from 'react';
+import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
 import { Container, Content } from './styles';
 
-export function Login() {
+const Login: React.FC = () => {
   return (
     <Container>
       <Content>
         <form>
           <h1>Faça seu logon</h1>
 
-          <input type="email" name="email" placeholder="Digite seu email" />
-          <input type="password" name="senha" placeholder="Digite sua senha" />
+          <Input name="email" icon={FiMail} type="email" placeholder="Digite seu email" />
+          <Input name="senha" icon={FiLock} type="password" placeholder="Digite sua senha" />
 
-          <button className="button" type="submit">Entrar</button>
+          <Button type="submit">Entrar</Button>
           <a href="forgot-password">Esqueci a senha</a>
         </form>
 
@@ -24,3 +27,5 @@ export function Login() {
     </Container>
   )
 }
+
+export default Login;

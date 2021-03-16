@@ -21,37 +21,7 @@ export const Content = styled.div`
 
     h1 {
       margin-bottom: 24px;
-    }
-
-    input {
-      background: #232129;
-      color: #fff;
-      border-radius: 10px;
-      border: 2px solid #232129;
-      padding: 16px;
-      width: 100%;
-
-      & + input {
-        margin-top: 8px;
-      }      
-    }
-
-    button {
-      background: #4A36B9;
-      height: 56px;
-      border-radius: 10px;
-      border: 0;
-      padding:0 16px;
-      width: 100%;
-      color: #fff;
-      font-weight: 700;
-      margin-top: 16px;
-      transition: background-color 0.2s;
-
-      &:hover {
-        background: ${shade(0.2, '#4A36B9')}
-      }
-    }
+    }      
 
     a {
       color: #fff;
