@@ -1,11 +1,13 @@
 import React from 'react';
-import Login from './pages/Login';
+// import Login from './pages/Login';
+import Registrar from './pages/Registrar';
 import GlobalStyle from './styles/global';
 
 const App: React.FC = () => {
   return (
     <>
-      <Login />
+      {/* <Login /> */}
+      <Registrar />
       <GlobalStyle />
     </>
   );
