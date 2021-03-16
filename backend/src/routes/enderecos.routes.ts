@@ -17,6 +17,17 @@ enderecosRouter.get('/', async (request, response) => {
   }
 })
 
+enderecosRouter.get('/:id', async (request, response) => {
+  try {
+    const enderecosRepository = getCustomRepository(EnderecosRespository);
+    const endereco = await enderecosRepository.findOne(request.params.id);
+
+    return response.send(endereco);
+  } catch (error) {
+    return response.status(400).json({ error: error.message })
+  }
+})
+
 enderecosRouter.post('/', async (request, response) => {
   try {
     const { usuario_id, endereco, numero, complemento, cep, cidade, estado } = request.body;
@@ -30,6 +41,41 @@ enderecosRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: error.message })
   }
 
+})
+
+enderecosRouter.put('/:id', async (request, response) => {
+  try {
+    const { usuario_id, endereco, numero, complemento, cep, cidade, estado } = request.body;
+
+    const enderecosRepository = getCustomRepository(EnderecosRespository);
+
+    const enderecoNovo = await enderecosRepository.update(request.params.id, {
+      usuario_id,
+      endereco,
+      numero,
+      complemento,
+      cep,
+      cidade,
+      estado
+    });
+
+    return response.json(enderecoNovo);
+
+  } catch (error) {
+    return response.status(400).json({ error: error.message })
+  }
+
+})
+
+enderecosRouter.delete('/:id', async (request, response) => {
+  try {
+    const enderecosRepository = getCustomRepository(EnderecosRespository);
+    const endereco = await enderecosRepository.delete(request.params.id);
+
+    return response.send(endereco);
+  } catch (error) {
+    return response.status(400).json({ error: error.message })
+  }
 })
 
 export default enderecosRouter;
