@@ -8,9 +8,34 @@ import Select from '../../components/Select';
 import { Container, Content } from './styles';
 
 const Registrar: React.FC = () => {
+
   function handleSubmit(data: object): void {
     console.log(data)
   }
+
+  // const handleSubmit = useCallback(async (data: object) => {
+  //   try {
+  //     const schema = Yup.object().shape({
+  //       nome: Yup.string().required('Nome obrigatório'),
+  //       telefone: Yup.string().required('Telefone obrigatório'),
+  //       email: Yup.string().required('E-mail obrigatório').email('Digite um email válido'),
+  //       senha: Yup.string().min(6, 'No mínimo 6 dígitos'),
+  //       idade: Yup.number().required('Idade obrigatória'),
+  //       peso: Yup.string().required('Peso obrigatório'),
+  //       etnia: Yup.string().required('Etnia obrigatória')
+  //     })
+
+  //     await schema.validate(data, {
+  //       abortEarly: false
+  //     });
+
+  //   } catch (error) {
+  //     formRef.current?.setErrors({
+  //       nome: 'Nome obrigatorio'
+  //     })
+  //   }
+  // }, [])
+
 
   return (
     <Container>
@@ -18,12 +43,12 @@ const Registrar: React.FC = () => {
         <Form onSubmit={handleSubmit}>
           <h1>Se cadastre</h1>
 
-          <Input name="nome" icon={FiUser} type="text" placeholder="Digite seu nome" />
-          <Input name="telefone" icon={FiPhone} type="tel" placeholder="Telefone" />
-          <Input name="email" icon={FiMail} type="email" placeholder="Digite seu email" />
+          <Input name="nome" icon={FiUser} placeholder="Digite seu nome" />
+          <Input name="telefone" icon={FiPhone} placeholder="Telefone" />
+          <Input name="email" icon={FiMail} placeholder="Digite seu email" />
           <Input name="senha" icon={FiLock} type="password" placeholder="Digite sua senha" />
-          <Input name="idade" icon={FiUser} type="number" placeholder="Digite sua idade" />
-          <Input name="peso" icon={FiUser} type="text" placeholder="Digite seu peso" />
+          <Input name="idade" icon={FiUser} placeholder="Digite sua idade" />
+          <Input name="peso" icon={FiUser} placeholder="Digite seu peso" />
 
           <Select name="etnia" label="Selecione a etnia">
             <option value="branco">Branco</option>
