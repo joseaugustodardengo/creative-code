@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FiArrowLeft, FiMail, FiLock, FiUser, FiPhone } from 'react-icons/fi';
 import { Form } from '@unform/web';
 
@@ -60,10 +61,10 @@ const Registrar: React.FC = () => {
           <Button type="submit">Cadastrar</Button>
         </Form>
 
-        <a href="login">
+        <Link to="/">
           <FiArrowLeft />
           Voltar para logon
-        </a>
+        </Link>
 
       </Content>
     </Container>

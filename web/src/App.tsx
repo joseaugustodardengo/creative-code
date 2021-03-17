@@ -1,19 +1,19 @@
 import React from 'react';
-import Login from './pages/Login';
-// import Registrar from './pages/Registrar';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes'
+
 import GlobalStyle from './styles/global';
 
 import { AuthProvider } from './context/AuthContext';
 
 const App: React.FC = () => {
   return (
-    <>
+    <BrowserRouter>
       <AuthProvider>
-        <Login />
+        <Routes />
       </AuthProvider>
-      {/* <Registrar /> */}
       <GlobalStyle />
-    </>
+    </BrowserRouter>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import Button from '../../components/Button';
@@ -35,10 +36,10 @@ const Login: React.FC = () => {
           <a href="forgot-password">Esqueci a senha</a>
         </Form>
 
-        <a href="login">
+        <Link to="registrar">
           <FiLogIn />
           Criar conta
-        </a>
+        </Link>
 
       </Content>
     </Container>
