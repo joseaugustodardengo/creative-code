@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { Container, Content } from './styles';
+import { AuthContext } from '../../context/AuthContext';
+
+interface LoginFormdata {
+  email: string;
+  senha: string;
+}
 
 const Login: React.FC = () => {
-  function handleSubmit(data: object): void {
-    console.log(data)
+  const { usuario, logar } = useContext(AuthContext);
+  console.log(usuario)
+
+  function handleSubmit(data: LoginFormdata): void {
+    logar({
+      email: data.email,
+      senha: data.senha
+    })
   }
 
   return (
