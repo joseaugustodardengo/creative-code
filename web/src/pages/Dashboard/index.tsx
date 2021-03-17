@@ -1,8 +1,16 @@
 import React from 'react';
+import Sidebar from '../../components/Sidebar';
 
 const Dashboard: React.FC = () => {
   return (
-    <h1>dashboard</h1>
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <Sidebar />
+
+      <div>
+        Content
+      </div>
+
+    </div>
   )
 }
 
