@@ -13,8 +13,7 @@ interface LoginFormdata {
 }
 
 const Login: React.FC = () => {
-  const { usuario, logar } = useContext(AuthContext);
-  console.log(usuario)
+  const { logar } = useContext(AuthContext);
 
   function handleSubmit(data: LoginFormdata): void {
     logar({
@@ -33,7 +32,6 @@ const Login: React.FC = () => {
           <Input name="senha" icon={FiLock} type="password" placeholder="Digite sua senha" />
 
           <Button type="submit">Entrar</Button>
-          <a href="forgot-password">Esqueci a senha</a>
         </Form>
 
         <Link to="registrar">

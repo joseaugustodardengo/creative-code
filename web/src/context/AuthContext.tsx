@@ -1,18 +1,16 @@
 import React, { createContext, useCallback, useState } from 'react';
+import { UsuarioProps } from '../components/Sidebar'
 import api from '../services/api';
-
 interface AuthState {
   token: string;
-  usuario: object;
+  usuario: UsuarioProps;
 }
-
 interface LogarCredenciais {
   email: string;
   senha: string;
 }
-
 interface AuthContextData {
-  usuario: object;
+  usuario: UsuarioProps;
   logar(credenciais: LogarCredenciais): Promise<void>;
   deslogar(): void;
 }

@@ -24,7 +24,7 @@ export const Content = styled.div`
     }      
 
     a {
-      color: #fff;
+      color: #1B1919;
       text-decoration: none;
       display: block;
       margin-top: 24px;
@@ -50,7 +50,7 @@ export const Content = styled.div`
   }
 
   > a {
-    color: #fff;
+    color: #1B1919;
     display: block;
     text-decoration: none;
     transition: color 0.2s;
